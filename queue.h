@@ -8,3 +8,4 @@ struct queue{
 };
 
 Queue createQueue(void);
+int enqueue(Queue*, void*);

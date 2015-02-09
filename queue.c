@@ -8,3 +8,10 @@ Queue createQueue(void){
 	Queue queue = {list, list->head, list->tail};
 	return queue;
 }
+
+int enqueue(Queue *queue, void* data){
+	int count = add_to_list(queue->list, create_node(data));
+	queue->front = queue->list->head;
+	queue->rear = queue->list->tail;
+	return (count < 0) ? -1 : queue->list->count;
+}
