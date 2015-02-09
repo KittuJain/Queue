@@ -15,3 +15,8 @@ int enqueue(Queue *queue, void* data){
 	queue->rear = queue->list->tail;
 	return (count < 0) ? -1 : queue->list->count;
 }
+
+void* dequeue(Queue* queue){
+	int count = queue->list->count;
+	return (count == 0) ? (void*)(-1) : deleteElementAt(queue->list, 0);	
+}

@@ -9,3 +9,4 @@ struct queue{
 
 Queue createQueue(void);
 int enqueue(Queue*, void*);
+void* dequeue(Queue*);

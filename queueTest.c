@@ -61,6 +61,17 @@ void test_enqueue_populates_queue_with_two_char_elements (){
 	free(queue.list);
 }
 
+void test_enqueue_populates_queue_with_three_char_elements (){
+	Queue queue = createQueue();
+	char data1 = 'k', data2 = 'a', data3 = 'r';
+	assertEqual(enqueue(&queue, (void*)&data1),1);
+	assertEqual(enqueue(&queue, (void*)&data2),2);
+	assertEqual(enqueue(&queue, (void*)&data3),3);
+	assertEqual(*(char*)(queue.front->data), 'k');
+	assertEqual(*(char*)(queue.rear->data), 'r');
+	free(queue.list);
+}
+
 void test_enqueue_populates_queue_with_two_string_elements (){
 	Queue queue = createQueue();
 	String data1 = "Krati";
@@ -69,5 +80,28 @@ void test_enqueue_populates_queue_with_two_string_elements (){
 	assertEqual(enqueue(&queue, (void*)&data2),2);
 	assertEqual(strcmp(*(String*)(queue.front->data), "Krati"),0);
 	assertEqual(strcmp(*(String*)(queue.rear->data), "Jain"),0);
+	free(queue.list);
+}
+
+void test_dequeue_deletes_the_front_most_element_of_queue (){
+	Queue queue = createQueue();
+	int data1 = 10, data2 = 20;
+	enqueue(&queue, (void*)&data1);
+	enqueue(&queue, (void*)&data2);
+	assertEqual(*(int*)dequeue(&queue),10);
+	assertEqual(queue.list->count, 1);
+	free(queue.list);
+}
+
+void test_dequeue_deletes_two_front_most_element_of_queue (){
+	Queue queue = createQueue();
+	int data1 = 10, data2 = 20, data3 = 30;
+	enqueue(&queue, (void*)&data1);
+	enqueue(&queue, (void*)&data2);
+	enqueue(&queue, (void*)&data3);
+	assertEqual(*(int*)dequeue(&queue),10);
+	assertEqual(queue.list->count, 2);
+	assertEqual(*(int*)dequeue(&queue),20);
+	assertEqual(queue.list->count, 1);
 	free(queue.list);
 }
