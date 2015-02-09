@@ -83,6 +83,14 @@ void test_enqueue_populates_queue_with_two_string_elements (){
 	free(queue.list);
 }
 
+void test_dequeue_returns_minus_1_when_there_is_no_element_in_queue (){
+	Queue queue = createQueue();
+	assertEqual(queue.list->count, 0);
+	assertEqual((int)dequeue(&queue), -1);
+	assertEqual(queue.list->count, 0);
+	free(queue.list);
+}
+
 void test_dequeue_deletes_the_front_most_element_of_queue (){
 	Queue queue = createQueue();
 	int data1 = 10, data2 = 20;
